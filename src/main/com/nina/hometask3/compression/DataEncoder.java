@@ -1,6 +1,7 @@
 package com.nina.hometask3.compression;
 
 public class DataEncoder {
+
     public String encode(String data) {
         if (data == null || data.isEmpty()) {
             return data;

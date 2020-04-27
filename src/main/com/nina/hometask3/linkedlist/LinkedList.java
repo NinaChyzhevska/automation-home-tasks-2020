@@ -1,13 +1,12 @@
 package com.nina.hometask3.linkedlist;
 
-public class LinkedList {
-
-    private Node head;
-    private Node tail;
+public class LinkedList<T> {
+    private Node<T> head;
+    private Node<T> tail;
     private int capacity = 0;
 
-    public void add(int value) {
-        Node node = new Node(value, null);
+    public void add(T value) {
+        Node<T> node = new Node<>(value, null);
         if (tail == null) {
             head = tail = node;
         } else {
@@ -17,13 +16,13 @@ public class LinkedList {
         capacity++;
     }
 
-    public int getByIndex(int index) {
+    public T getByIndex(int index) {
         if (index < 0 || index >= capacity) {
             throw new IllegalArgumentException("Invalid index provided");
         }
 
         int cnt = 0;
-        Node curr = head;
+        Node<T> curr = head;
 
         while (cnt != index) {
             curr = curr.next;
@@ -32,27 +31,27 @@ public class LinkedList {
         return curr.value;
     }
 
-    public int removeByIndex(int index) {
+    public T removeByIndex(int index) {
         if (index < 0 || index >= capacity) {
             throw new IllegalArgumentException("Invalid index provided");
         }
 
         if (index == 0) {
-            Node toRemove = head;
+            Node<T> toRemove = head;
             head = head.next;
             capacity--;
             return toRemove.value;
         }
 
         int cnt = 1;
-        Node prev = head;
+        Node<T> prev = head;
 
         while (cnt != index) {
             prev = prev.next;
             cnt++;
         }
 
-        Node toRemove = prev.next;
+        Node<T> toRemove = prev.next;
         prev.next = toRemove.next;
 
         if (toRemove == tail) {
@@ -63,21 +62,25 @@ public class LinkedList {
         return toRemove.value;
     }
 
+    public int size() {
+        return capacity;
+    }
+
     public void display() {
         System.out.println("\nLinked list:");
 
-        Node curr = head;
+        Node<T> curr = head;
         while (curr != null) {
             System.out.print(curr.value + " ");
             curr = curr.next;
         }
     }
 
-    private static final class Node {
-        int value;
-        Node next;
+    private static final class Node<K> {
+        K value;
+        Node<K> next;
 
-        public Node(int value, Node next) {
+        public Node(K value, Node<K> next) {
             this.value = value;
             this.next = next;
         }

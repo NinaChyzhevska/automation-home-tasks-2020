@@ -2,7 +2,7 @@ package com.nina.hometask3.linkedlist;
 
 public class Main {
     public static void main(String[] args) {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<Integer> linkedList = new LinkedList<>();
         linkedList.add(5);
         linkedList.add(8);
         linkedList.add(9);

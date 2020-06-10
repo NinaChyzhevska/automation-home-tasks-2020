@@ -1,9 +1,15 @@
 package com.nina.hometask1.bank;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BankAccount {
+    private static final Logger logger
+            = LoggerFactory.getLogger(BankAccount.class);
+
     protected double balance;
     private List<Observer> observers = new ArrayList<>();
 
@@ -26,6 +32,7 @@ public abstract class BankAccount {
 
     protected void validateMoney(double money) {
         if (money <= 0) {
+            logger.error("Not enough money");
             throw new IllegalArgumentException("Money amount should be positive");
         }
     }
